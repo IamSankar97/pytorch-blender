@@ -5,7 +5,6 @@ import numpy as np
 import psutil
 import signal
 
-
 from .finder import discover_blender
 from .launch_info import LaunchInfo
 from .utils import get_primary_ip
@@ -60,6 +59,7 @@ class BlenderLauncher:
         self,
         scene,
         script,
+        address,
         num_instances=1,
         named_sockets=None,
         start_port=11000,
@@ -73,7 +73,7 @@ class BlenderLauncher:
         """Create BlenderLauncher"""
         self.num_instances = num_instances
         self.start_port = start_port
-        self.bind_addr = bind_addr
+        self.bind_addr = bind_addr.format(address)
         self.proto = proto
         self.scene = scene
         self.script = script

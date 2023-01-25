@@ -141,7 +141,7 @@ class RemoteEnv:
 
 
 @contextmanager
-def launch_env(scene, script, background=False, **kwargs):
+def launch_env(scene, script, address, background=False, **kwargs):
     """Launch a remote environment wrapped in a context manager.
 
     Params
@@ -183,6 +183,7 @@ def launch_env(scene, script, background=False, **kwargs):
             scene=scene,
             script=script,
             num_instances=1,
+            address=address,
             named_sockets=["GYM"],
             instance_args=[additional_args],
             background=background,
@@ -221,7 +222,7 @@ try:
             self._es = ExitStack()
             self._env = None
 
-        def launch(self, scene, script, background=False, **kwargs):
+        def launch(self, scene, script, address, background=False, **kwargs):
             """Launch the remote environment.
 
             Params
@@ -239,7 +240,7 @@ try:
             """
             assert not self._env, "Environment already running."
             self._env = self._es.enter_context(
-                launch_env(scene=scene, script=script, background=background, **kwargs)
+                launch_env(scene=scene, script=script, background=background, address=address, **kwargs)
             )
 
         def step(self, action):
