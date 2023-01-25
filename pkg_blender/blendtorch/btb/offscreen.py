@@ -46,7 +46,7 @@ class OffScreenRenderer:
     def shape(self):
         return self.camera.shape
 
-    def render(self):
+    def render(self, image_size=(512, 512)):
         """Render the scene and return image as buffer.
 
         Returns
@@ -87,6 +87,8 @@ class OffScreenRenderer:
 
         bpy.ops.render.render(write_still=True)
         image = Image.open(file_path)
+        image = image.resize(image_size)
+        image = image.convert("L")
         return image
 
     def set_render_style(self, shading="RENDERED", overlays=False):
