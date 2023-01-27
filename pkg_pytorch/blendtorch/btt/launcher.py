@@ -63,7 +63,7 @@ class BlenderLauncher:
         num_instances=1,
         named_sockets=None,
         start_port=11000,
-        bind_addr="127.0.0.1",
+        bind_addr="127.0.0.{}",
         instance_args=None,
         proto="tcp",
         blend_path=None,
