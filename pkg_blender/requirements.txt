@@ -1,6 +1,6 @@
 pyzmq>=18.1.1
 numpy>=1.18.2
-PIL>=9.3.0
+pillow>=8.0.1
 pyopengl>=3.1.5
 minexr>=1.0.0
 supershape>=1.1.0
