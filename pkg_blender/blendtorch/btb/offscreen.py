@@ -6,7 +6,7 @@ from OpenGL.GL import glGetTexImage
 from PIL import Image
 from .camera import Camera
 from .utils import find_first_view3d
-
+import time
 
 class OffScreenRenderer:
     """Provides offscreen scene rendering using Eevee.
@@ -82,7 +82,8 @@ class OffScreenRenderer:
 
         # Set the rendering engine to Cycles
         bpy.context.scene.render.engine = 'CYCLES'
-        file_path = 'spacer_gym/temp/image{}.png'.format(np.random.rand())
+        time_stamp = time.time()
+        file_path = 'spacer_gym/temp/image{}.png'.format(time_stamp)
         bpy.context.scene.render.filepath = file_path
 
         bpy.ops.render.render(write_still=True)
